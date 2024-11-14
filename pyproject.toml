@@ -13,7 +13,6 @@ packages = ["computer_use_demo"]
 name = "computer-use-demo"
 version = "0.1.0"
 description = "Computer use demonstration environment"
-readme = "README.md"
 requires-python = "==3.11.6"
 authors = [
     { name = "Teo", email = "teocns@gmail.com" }
