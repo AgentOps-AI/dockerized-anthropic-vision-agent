@@ -25,7 +25,7 @@ dependencies = [
     "jsonschema==4.22.0",
     "boto3>=1.28.57",
     "google-auth<3,>=2",
-    "agentops>=0.3.17",
+    "agentops @ git+https://github.com/AgentOps-AI/agentops.git@anthropic-vision",
 ]
 
 [project.optional-dependencies]
