@@ -12,11 +12,7 @@
             "pathMappings": [
                 {
                     "localRoot": "${workspaceFolder}/.venv/lib/python3.11/site-packages",
-                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages"
-                },
-                {
-                    "localRoot": "${env:HOME}/agentops/agentops",
-                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/agentops"
+                    "remoteRoot": "/home/computeruse/.venv/lib/python3.11/site-packages",
                 },
                 {
                     "localRoot": "${workspaceFolder}/computer_use_demo",
@@ -38,11 +34,7 @@
             "pathMappings": [
                 {
                     "localRoot": "${workspaceFolder}/.venv/lib/python3.11/site-packages",
-                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages"
-                },
-                {
-                    "localRoot": "/Users/user/agentops/agentops",
-                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/agentops"
+                    "remoteRoot": "/home/computeruse/.venv/lib/python3.11/site-packages",
                 },
                 {
                     "localRoot": "${workspaceFolder}/computer_use_demo",

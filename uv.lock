@@ -4,17 +4,13 @@ requires-python = "==3.11.6"
 [[package]]
 name = "agentops"
 version = "0.3.17"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/AgentOps-AI/agentops.git?rev=anthropic-vision#e2486d7185865a5b755426aa58ffe32f6dfe34f7" }
 dependencies = [
     { name = "packaging" },
     { name = "psutil" },
     { name = "pyyaml" },
     { name = "requests" },
     { name = "termcolor" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/21/31/d9a3747df04b7915ee1cffaa4a5636f8ed0e1385e5236b0da085ccce936a/agentops-0.3.17.tar.gz", hash = "sha256:a893cc7c37eda720ab59e8facaa2774cc23d125648aa00539ae485ff592e8b77", size = 51469 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/30/38a659671eec20fcae759bd69655ec45b08c4e875627b33e3b05bd46f299/agentops-0.3.17-py3-none-any.whl", hash = "sha256:0d24dd082270a76c98ad0391101d5b5c3d01e389c5032389ecd551285e4b0662", size = 55503 },
 ]
 
 [[package]]
@@ -211,7 +207,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "agentops", specifier = ">=0.3.17" },
+    { name = "agentops", git = "https://github.com/AgentOps-AI/agentops.git?rev=anthropic-vision" },
     { name = "anthropic", extras = ["bedrock", "vertex"], specifier = ">=0.37.1" },
     { name = "boto3", specifier = ">=1.28.57" },
     { name = "debugpy", marker = "extra == 'dev'", specifier = "==1.8.1" },

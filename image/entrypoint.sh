@@ -9,11 +9,11 @@ if [ "${ENABLE_DEBUGPY}" = "1" ]; then
     echo "Starting debug processes..."
     
     # Start HTTP server with debugpy
-    python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 --wait-for-client computer_use_demo/http_server.py > /tmp/server_logs.txt 2>&1 &
+    uv run python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 --wait-for-client computer_use_demo/http_server.py > /tmp/server_logs.txt 2>&1 &
     SERVER_PID=$!
     
     # Start Streamlit with debugpy
-    STREAMLIT_SERVER_PORT=8501 python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5679 --wait-for-client -m streamlit run computer_use_demo/streamlit.py > /tmp/streamlit_stdout.log 2>&1 &
+    STREAMLIT_SERVER_PORT=8501 uv run python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5679 --wait-for-client -m streamlit run computer_use_demo/streamlit.py > /tmp/streamlit_stdout.log 2>&1 &
     STREAMLIT_PID=$!
     
     # Wait for processes to initialize
@@ -51,8 +51,8 @@ if [ "${ENABLE_DEBUGPY}" = "1" ]; then
     echo "🐛 Debug mode enabled - waiting for debugger to attach on ports: 5678 (HTTP), 5679 (Streamlit)"
 else
     # Normal mode: Start processes directly
-    python computer_use_demo/http_server.py > /tmp/server_logs.txt 2>&1 &
-    STREAMLIT_SERVER_PORT=8501 python -m streamlit run computer_use_demo/streamlit.py > /tmp/streamlit_stdout.log &
+    uv run python computer_use_demo/http_server.py > /tmp/server_logs.txt 2>&1 &
+    STREAMLIT_SERVER_PORT=8501 uv run python -m streamlit run computer_use_demo/streamlit.py > /tmp/streamlit_stdout.log &
 fi
 
 echo "✨ Computer Use Demo is ready!"

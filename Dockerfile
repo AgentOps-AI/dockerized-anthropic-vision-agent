@@ -3,8 +3,9 @@ FROM docker.io/ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_PRIORITY=high
 
-RUN apt-get update && \
-    apt-get -y upgrade && \
+RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
+    apt-get update && \
+    apt-get -yq upgrade && \
     apt-get -y install \
     # UI Requirements
     xvfb \
@@ -48,8 +49,8 @@ RUN apt-get update && \
     tint2 \
     galculator \
     pcmanfm \
-    unzip && \
-    apt-get clean
+    unzip \
+    python3 python3-pip
 
 # Install noVNC
 RUN git clone --branch v1.5.0 https://github.com/novnc/noVNC.git /opt/noVNC && \
@@ -62,35 +63,17 @@ ENV HOME=/home/$USERNAME
 RUN useradd -m -s /bin/bash -d $HOME $USERNAME
 RUN echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER computeruse
+
 WORKDIR $HOME
 
-# setup python
-RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
-    cd ~/.pyenv && src/configure && make -C src && cd .. && \
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc && \
-    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc && \
-    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-ENV PYENV_ROOT="$HOME/.pyenv"
-ENV PATH="$PYENV_ROOT/bin:$PATH"
-ENV PYENV_VERSION_MAJOR=3
-ENV PYENV_VERSION_MINOR=11
-ENV PYENV_VERSION_PATCH=6
-ENV PYENV_VERSION=$PYENV_VERSION_MAJOR.$PYENV_VERSION_MINOR.$PYENV_VERSION_PATCH
-RUN eval "$(pyenv init -)" && \
-    pyenv install $PYENV_VERSION && \
-    pyenv global $PYENV_VERSION && \
-    pyenv rehash
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-ENV PATH="$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH"
+ENV PATH="$HOME/.local/bin:$PATH"
 
-RUN python -m pip install --upgrade pip==23.1.2 setuptools==58.0.4 wheel==0.40.0 && \
-    python -m pip config set global.disable-pip-version-check true
-
-# only reinstall if pyproject.toml changes
+# Install dependencies using uv
 COPY --chown=$USERNAME:$USERNAME pyproject.toml $HOME/pyproject.toml
-RUN python -m pip install --upgrade pip==23.1.2 setuptools==58.0.4 wheel==0.40.0 && \
-    python -m pip config set global.disable-pip-version-check true && \
-    python -m pip install -e ".[dev]"
+COPY --chown=$USERNAME:$USERNAME uv.lock $HOME/uv.lock
+RUN uv sync --frozen --all-extras
 
 # setup desktop env & app
 COPY --chown=$USERNAME:$USERNAME image/ $HOME
