@@ -13,10 +13,10 @@ services:
       - "8501:8501"
       - "5678:5678"
       - "5679:5679"
-    volumes:
-      - ./computer_use_demo:/home/computeruse/computer_use_demo/
-      - ./image/entrypoint.sh:/home/computeruse/entrypoint.sh
-      # uncomment bewlow below if you wanna debug agentops instead
-      # - /Users/noob/agentops/agentops:/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/agentops
+    volumes: []
+      # uncomment bewlow below if you wanna mount the local files to the container for debugging purposes
+      # - ./computer_use_demo:/home/computeruse/computer_use_demo/
+      # - ./image/entrypoint.sh:/home/computeruse/entrypoint.sh
+      # Alternatively you can mount specific modules to `/home/computeruse/.venv/lib/python3.11/site-packages/<module_name>`
     environment:
       - ENABLE_DEBUGPY=1
