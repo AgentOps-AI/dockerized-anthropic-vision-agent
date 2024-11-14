@@ -1,0 +1,22 @@
+services:
+  computer-use-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: /home/computeruse/entrypoint.sh
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+      - "5900:5900"
+      - "6080:6080"
+      - "8501:8501"
+      - "5678:5678"
+      - "5679:5679"
+    volumes:
+      - ./computer_use_demo:/home/computeruse/computer_use_demo/
+      - ./image/entrypoint.sh:/home/computeruse/entrypoint.sh
+      # uncomment bewlow below if you wanna debug agentops instead
+      # - /Users/noob/agentops/agentops:/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/agentops
+    environment:
+      - ENABLE_DEBUGPY=1

@@ -1,0 +1,66 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug HTTP Server",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/.venv/lib/python3.11/site-packages",
+                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages"
+                },
+                {
+                    "localRoot": "${env:HOME}/agentops/agentops",
+                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/agentops"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/computer_use_demo",
+                    "remoteRoot": "/home/computeruse/computer_use_demo"
+                },
+            ],
+            "justMyCode": false,
+            "preLaunchTask": "Start Debug Environment",
+            "postDebugTask": "Stop Debug Container"
+        },
+        {
+            "name": "Debug Streamlit",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5679
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/.venv/lib/python3.11/site-packages",
+                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages"
+                },
+                {
+                    "localRoot": "/Users/user/agentops/agentops",
+                    "remoteRoot": "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/agentops"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/computer_use_demo",
+                    "remoteRoot": "/home/computeruse/computer_use_demo"
+                },
+            ],
+            "justMyCode": false,
+            "preLaunchTask": "Start Debug Environment",
+            "postDebugTask": "Stop Debug Container"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug All",
+            "configurations": ["Debug HTTP Server", "Debug Streamlit"],
+            "preLaunchTask": "Start Debug Environment",
+            "postDebugTask": "Stop Debug Container",
+            "stopAll": true
+        }
+    ]
+} 
