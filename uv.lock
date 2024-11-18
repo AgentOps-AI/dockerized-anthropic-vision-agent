@@ -4,7 +4,7 @@ requires-python = "==3.11.6"
 [[package]]
 name = "agentops"
 version = "0.3.17"
-source = { git = "https://github.com/AgentOps-AI/agentops.git?rev=anthropic-vision#e2486d7185865a5b755426aa58ffe32f6dfe34f7" }
+source = { git = "https://github.com/AgentOps-AI/agentops.git?rev=7e1c32f612332ce8a7302c6d2b38740565d0bd9b#7e1c32f612332ce8a7302c6d2b38740565d0bd9b" }
 dependencies = [
     { name = "packaging" },
     { name = "psutil" },
@@ -207,7 +207,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "agentops", git = "https://github.com/AgentOps-AI/agentops.git?rev=anthropic-vision" },
+    { name = "agentops", git = "https://github.com/AgentOps-AI/agentops.git?rev=7e1c32f612332ce8a7302c6d2b38740565d0bd9b#7e1c32f612332ce8a7302c6d2b38740565d0bd9b" },
     { name = "anthropic", extras = ["bedrock", "vertex"], specifier = ">=0.37.1" },
     { name = "boto3", specifier = ">=1.28.57" },
     { name = "debugpy", marker = "extra == 'dev'", specifier = "==1.8.1" },
