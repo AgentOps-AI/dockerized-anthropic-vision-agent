@@ -3,14 +3,18 @@ requires-python = "==3.11.6"
 
 [[package]]
 name = "agentops"
-version = "0.3.17"
-source = { git = "https://github.com/AgentOps-AI/agentops.git?rev=7e1c32f612332ce8a7302c6d2b38740565d0bd9b#7e1c32f612332ce8a7302c6d2b38740565d0bd9b" }
+version = "0.3.18"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
     { name = "psutil" },
     { name = "pyyaml" },
     { name = "requests" },
     { name = "termcolor" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c5/52/46bb2f29b9e5f2e1d8b124296b7794934a9048de635d9e7d6a95e791ad7b/agentops-0.3.18.tar.gz", hash = "sha256:4d509754df7be52579597cc9f53939c5218131a0379463e0ff6f6f40cde9fcc4", size = 55394 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/97/8d/bd4cad95dad722dc2d3e4179feab1058ef846828c0e15e51e8bfaea373ee/agentops-0.3.18-py3-none-any.whl", hash = "sha256:8b48d8a1662f276653430fd541c77fa4f9a15a43e881b518ff88ea56925afcf7", size = 58032 },
 ]
 
 [[package]]
@@ -207,7 +211,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "agentops", git = "https://github.com/AgentOps-AI/agentops.git?rev=7e1c32f612332ce8a7302c6d2b38740565d0bd9b#7e1c32f612332ce8a7302c6d2b38740565d0bd9b" },
+    { name = "agentops", specifier = ">=0.3.18" },
     { name = "anthropic", extras = ["bedrock", "vertex"], specifier = ">=0.37.1" },
     { name = "boto3", specifier = ">=1.28.57" },
     { name = "debugpy", marker = "extra == 'dev'", specifier = "==1.8.1" },
